@@ -3,14 +3,13 @@ export const environment = {
 
 
   firebase:{
-    apiKey: "AIzaSyCVOM6fAAgoOrLDNJJRa6Y0OasWZlQcNS0",
-    authDomain: "tutorialfirebase-f3faf.firebaseapp.com",
-    databaseURL: "https://tutorialfirebase-f3faf.firebaseio.com",
-    projectId: "tutorialfirebase-f3faf",
-    storageBucket: "tutorialfirebase-f3faf.appspot.com",
-    messagingSenderId: "610608193158",
-    appId: "1:610608193158:web:f323aec320992fdd7c7b07",
-    measurementId: "G-TX4RG4KKGR"
+    apiKey: "AIzaSyAJXpJYxNPizSztT-2_msJWJaqedQLSO28",
+    authDomain: "tutorialfirebase-5b31c.firebaseapp.com",
+    projectId: "tutorialfirebase-5b31c",
+    storageBucket: "tutorialfirebase-5b31c.appspot.com",
+    messagingSenderId: "668831261381",
+    appId: "1:668831261381:web:fb73e51daf0bf4c64286ac",
+    measurementId: "G-42CL0HYTM9"
   }
 
 

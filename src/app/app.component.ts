@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseServiceService } from './services/firebase-service.service';
 import { isNullOrUndefined } from 'util';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
 
   closeResult = '';
 
-  estudianteForm: FormGroup;
+ ProductoForm: FormGroup;
 
   idFirabaseActualizar: string;
   actualizar: boolean;
@@ -31,25 +32,28 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.idFirabaseActualizar = "";
     this.actualizar = false;
-    //configuracion para la paginación
+    //configuracion para la productos
     this.config = {
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       currentPage: 1,
       totalItems: this.collection.data.length
     };
-    //inicializando formulario para guardar los estudiantes
-    this.estudianteForm = this.fb.group({
+    //inicializando formulario para guardar los productos
+    this.ProductoForm = this.fb.group({
       id: ['', Validators.required],
       nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
+      precio: ['', Validators.required],
+      calorias: ['', Validators.required],
+
     });
-    //cargando todos los estudiantes de firebase
-    this.firebaseServiceService.getEstudiantes().subscribe(resp => {
+    //cargando todos los productos de firebase
+    this.firebaseServiceService.getProductos().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
           id: e.payload.doc.data().id,
           nombre: e.payload.doc.data().nombre,
-          apellido: e.payload.doc.data().apellido,
+          precio: e.payload.doc.data().precio,
+          calorias: e.payload.doc.data().calorias,
           idFirebase: e.payload.doc.id
         }
       })
@@ -66,22 +70,22 @@ export class AppComponent implements OnInit {
   }
 
   eliminar(item: any): void {
-    this.firebaseServiceService.deleteEstudiante(item.idFirebase);
+    this.firebaseServiceService.deleteProductos(item.idFirebase);
   }
 
-  guardarEstudiante(): void {
-    this.firebaseServiceService.createEstudiante(this.estudianteForm.value).then(resp => {
-      this.estudianteForm.reset();
+  guardarProducto(): void {
+    this.firebaseServiceService.createProductos(this.ProductoForm.value).then(resp => {
+      this.ProductoForm.reset();
       this.modalService.dismissAll();
     }).catch(error => {
       console.error(error)
     })
   }
 
-  actualizarEstudiante() {
+  actualizarProducto() {
     if (!isNullOrUndefined(this.idFirabaseActualizar)) {
-      this.firebaseServiceService.updateEstudiante(this.idFirabaseActualizar, this.estudianteForm.value).then(resp => {
-        this.estudianteForm.reset();
+      this.firebaseServiceService.updateProductos(this.idFirabaseActualizar, this.ProductoForm.value).then(resp => {
+        this.ProductoForm.reset();
         this.modalService.dismissAll();
       }).catch(error => {
         console.error(error);
@@ -89,14 +93,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+  
+
 
   openEditar(content, item: any) {
 
     //llenar form para editar
-    this.estudianteForm.setValue({
+    this.ProductoForm.setValue({
       id: item.id,
       nombre: item.nombre,
-      apellido: item.apellido,
+      precio: item.precio,
+      calorias: item.calorias,
     });
     this.idFirabaseActualizar = item.idFirebase;
     this.actualizar = true;

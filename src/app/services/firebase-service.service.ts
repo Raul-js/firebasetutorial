@@ -13,25 +13,25 @@ export class FirebaseServiceService {
   /**
    * Metodo para listar todos los estudiantes
    */
-  getEstudiantes(){
-    return this.firestore.collection("estudiantes").snapshotChanges();
+  getProductos(){
+    return this.firestore.collection("Producto").snapshotChanges();
   }
 
   /**
    * crea un estudiante en firebase
    * @param estudiante estudiante a crear
    */
-  createEstudiante(estudiante:any){
-    return this.firestore.collection("estudiantes").add(estudiante);
+  createProductos(Producto:any){
+    return this.firestore.collection("Producto").add(Producto);
   }
 
   /**
    * actualiza un estudiante existente en firebase
    * @param id id de la coleccion en firebase
-   * @param estudiante estudiante a actualizar
+   * @param Producto estudiante a actualizar
    */
-  updateEstudiante(id:any, estudiante:any){
-    return this.firestore.collection("estudiantes").doc(id).update(estudiante);
+  updateProductos(id:any, Producto:any){
+    return this.firestore.collection("Producto").doc(id).update(Producto);
   }
 
 
@@ -39,8 +39,8 @@ export class FirebaseServiceService {
    * borrar un estudiante existente en firebase
    * @param id id de la coleccion en firebase
    */
-  deleteEstudiante(id:any){
-    return this.firestore.collection("estudiantes").doc(id).delete();
+  deleteProductos(id:any){
+    return this.firestore.collection("Producto").doc(id).delete();
 
   }
 }
