@@ -1,6 +1,5 @@
 <div style="text-align: center;">
-  <h2>Sistema de Producto</h2>
-  <button type="button" class="btn btn-success" (click)="open(content)">Crear nuevo producto</button>
+  <h2>Vista producto</h2>
   <table class="table">
     <thead>
       <tr>
@@ -20,8 +19,13 @@
         <td>
           <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
           <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
+          <button type="button" class="btn btn-success" (click)="open(content)">Crear</button>
         </td>
       </tr>
+      
+       
+
+     
     </tbody>
   </table>
   <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
@@ -54,6 +58,7 @@
               <label>Calorias</label>
               <input type="text" formControlName="calorias" class="form-control">
             </div>
+          
             
           </form>
         </div>
