@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "firebasetutorial"
+  "defaultProject": "firebasetutorial",
+  "cli": {
+    "analytics": false
+  }
 }
