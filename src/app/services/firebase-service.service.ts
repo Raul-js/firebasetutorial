@@ -11,14 +11,14 @@ export class FirebaseServiceService {
   ) { }
 
   /**
-   * Metodo para listar todos los estudiantes
+   * Metodo para listar todos los productos
    */
   getProductos(){
     return this.firestore.collection("Producto").snapshotChanges();
   }
 
   /**
-   * crea un estudiante en firebase
+   * crea un producto en firebase
    * @param estudiante estudiante a crear
    */
   createProductos(Producto:any){
