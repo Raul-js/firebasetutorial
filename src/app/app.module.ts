@@ -8,11 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { ProductosComponent } from './componentes/productos/productos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProductosComponent,
     
   ],
   imports: [
