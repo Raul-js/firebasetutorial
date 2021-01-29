@@ -11,5 +11,7 @@
     <input type="text" #password/>
     <button (click)="onSignin(email.value,password.value)">Sign in</button>
   </div>
-  <app-home *ngIf="isSignedIn" (isLogout)="handleLogout()"></app-home>
-  
+  <div  *ngIf="isSignedIn" >
+  <p > Estas logeado <br>Pulsa aqui para deslogearte</p>
+  <button (click)="logout()"><a href="#">SALIR</a></button>
+</div>

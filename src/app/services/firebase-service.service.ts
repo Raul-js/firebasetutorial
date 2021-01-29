@@ -12,6 +12,11 @@ export class FirebaseServiceService {
     public firebaseAuth : AngularFireAuth,
     private firestore: AngularFirestore
   ) { }
+
+
+                                    //AUTENTICACION
+
+                                    //ENTRAR
   async signin(email: string, password : string){
     await this.firebaseAuth.signInWithEmailAndPassword(email,password)
     .then(res=>{
@@ -19,7 +24,7 @@ export class FirebaseServiceService {
       localStorage.setItem('user',JSON.stringify(res.user))
     })
   }
-
+                                    //REGISTRARSE
   async signup(email: string, password : string){
     await this.firebaseAuth.createUserWithEmailAndPassword(email,password)
     .then(res=>{
@@ -27,10 +32,14 @@ export class FirebaseServiceService {
       localStorage.setItem('user',JSON.stringify(res.user))
     })
   }
+                                //DESLOGEARSE
   logout(){
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
   }
+
+
+                               //SERVICIOS PARA PRODUCTO
 
   /**
    * Metodo para listar todos los productos

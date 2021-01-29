@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 @Component({
   selector: 'app-auth',
@@ -7,7 +8,10 @@ import { FirebaseServiceService } from 'src/app/services/firebase-service.servic
 })
 export class AuthComponent implements OnInit {
   title = 'firebase-angular-auth';
+  
   isSignedIn = false
+ 
+  @Output() isLogout = new EventEmitter<void>()
   constructor(public firebaseService : FirebaseServiceService) { }
 
   ngOnInit() {
@@ -29,5 +33,9 @@ export class AuthComponent implements OnInit {
   handleLogout(){
     this.isSignedIn = false
 
+  }
+  logout(){
+    this.firebaseService.logout()
+    this.isLogout.emit()
   }
 }
