@@ -1,14 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseServiceService {
-
+  isLoggedIn = false
   constructor(
+    public firebaseAuth : AngularFireAuth,
     private firestore: AngularFirestore
   ) { }
+  async signin(email: string, password : string){
+    await this.firebaseAuth.signInWithEmailAndPassword(email,password)
+    .then(res=>{
+      this.isLoggedIn = true
+      localStorage.setItem('user',JSON.stringify(res.user))
+    })
+  }
+
+  async signup(email: string, password : string){
+    await this.firebaseAuth.createUserWithEmailAndPassword(email,password)
+    .then(res=>{
+      this.isLoggedIn = true
+      localStorage.setItem('user',JSON.stringify(res.user))
+    })
+  }
+  logout(){
+    this.firebaseAuth.signOut()
+    localStorage.removeItem('user')
+  }
 
   /**
    * Metodo para listar todos los productos
@@ -41,6 +63,14 @@ export class FirebaseServiceService {
    */
   deleteProductos(id:any){
     return this.firestore.collection("Producto").doc(id).delete();
+
+
+
+
+    
+
+
+
 
   }
 }

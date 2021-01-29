@@ -9,12 +9,14 @@ import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { ProductosComponent } from './componentes/productos/productos.component';
+import { AuthComponent } from './componentes/auth/auth.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductosComponent,
+    AuthComponent,
     
   ],
   imports: [
