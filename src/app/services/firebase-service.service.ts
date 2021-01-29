@@ -31,7 +31,9 @@ export class FirebaseServiceService {
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user))
     })
+
   }
+  
                                 //DESLOGEARSE
   logout(){
     this.firebaseAuth.signOut()
@@ -74,12 +76,9 @@ export class FirebaseServiceService {
     return this.firestore.collection("Producto").doc(id).delete();
 
 
-
-
-    
-
-
-
-
+ }
+  getUserAuth(){
+   
+    return this.firebaseAuth;
   }
 }

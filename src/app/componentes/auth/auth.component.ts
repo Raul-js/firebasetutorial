@@ -38,4 +38,6 @@ export class AuthComponent implements OnInit {
     this.firebaseService.logout()
     this.isLogout.emit()
   }
+  
+  
 }

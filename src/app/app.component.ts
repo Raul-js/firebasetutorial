@@ -16,9 +16,7 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(
-    
-  ) { }
+  constructor() { }
 
   config: any;
   collection = { count: 0, data: [] }

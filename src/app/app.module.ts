@@ -10,6 +10,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { ProductosComponent } from './componentes/productos/productos.component';
 import { AuthComponent } from './componentes/auth/auth.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { ComprasComponent } from './componentes/compras/compras.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { AuthComponent } from './componentes/auth/auth.component';
     AppComponent,
     ProductosComponent,
     AuthComponent,
+    UsuariosComponent,
+    ComprasComponent,
     
   ],
   imports: [
