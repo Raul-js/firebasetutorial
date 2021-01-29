@@ -77,8 +77,5 @@ export class FirebaseServiceService {
 
 
  }
-  getUserAuth(){
-   
-    return this.firebaseAuth;
-  }
+  
 }
