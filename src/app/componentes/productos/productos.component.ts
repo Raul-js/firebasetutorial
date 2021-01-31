@@ -14,7 +14,7 @@ export class ProductosComponent implements OnInit {
 
   closeResult = '';
 
- ProductoForm: FormGroup;
+  ProductoForm: FormGroup;
 
   idFirabaseActualizar: string;
   actualizar: boolean;
@@ -22,7 +22,7 @@ export class ProductosComponent implements OnInit {
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService) { }
 
-    config: any;
+  config: any;
   collection = { count: 0, data: [] }
 
   ngOnInit(): void {
@@ -89,7 +89,7 @@ export class ProductosComponent implements OnInit {
     }
   }
 
-  
+
 
 
   openEditar(content, item: any) {
@@ -129,6 +129,6 @@ export class ProductosComponent implements OnInit {
     }
   }
 
-  }
+}
 
 

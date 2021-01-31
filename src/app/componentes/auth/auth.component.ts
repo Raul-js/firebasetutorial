@@ -1,4 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import * as firebase from 'firebase';
 
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 @Component({
@@ -22,13 +23,30 @@ export class AuthComponent implements OnInit {
   }
   async onSignup(email:string,password:string){
     await this.firebaseService.signup(email,password)
+    
     if(this.firebaseService.isLoggedIn)
     this.isSignedIn = true
+    const currentUser = firebase.auth().currentUser;
+    const uid = currentUser.uid;
+    const emaail = currentUser.email;
+    const name = currentUser.displayName;
+    const UserData = {lastLoginTime: new Date()};
+   
+   return firebase.firestore().doc(`users/${uid}`).set(UserData);
+    
+
+
   }
   async onSignin(email:string,password:string){
     await this.firebaseService.signin(email,password)
     if(this.firebaseService.isLoggedIn)
+   
+    
     this.isSignedIn = true
+    const currentUser = firebase.auth().currentUser;
+    const uid = currentUser.uid;
+    const emaail = currentUser.email;
+    const name = currentUser.displayName;
   }
   handleLogout(){
     this.isSignedIn = false
