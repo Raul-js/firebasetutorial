@@ -79,6 +79,22 @@ export class FirebaseServiceService {
 
 
   }
-  
 
+
+
+                                  //SERVICIOS DE USUARIO
+  deleteUsuarios(id: any) {
+    return this.firestore.collection("users").doc(id).delete();
+  }
+
+
+  getUsuarios() {
+    return this.firestore.collection("users").snapshotChanges();
+  }
+
+  //actualizar usuario
+  
+  updateUsuario(id: any, Usuario: any) {
+    return this.firestore.collection("users").doc(id).update(Usuario);
+  }
 }

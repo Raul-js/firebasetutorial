@@ -1,5 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import * as firebase from 'firebase';
+import { merge } from 'rxjs';
 
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 @Component({
@@ -32,7 +33,7 @@ export class AuthComponent implements OnInit {
     const name = currentUser.displayName;
     const UserData = {lastLoginTime: new Date()};
    
-   return firebase.firestore().doc(`users/${uid}`).set(UserData);
+   return firebase.firestore().doc(`users/${uid}`).set(UserData,{merge:true});
     
 
 

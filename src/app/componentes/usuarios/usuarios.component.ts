@@ -14,7 +14,7 @@ import { isNullOrUndefined } from 'util';
 export class UsuariosComponent implements OnInit {
   closeResult = '';
 
-  ProductoForm: FormGroup;
+  UsuarioForm: FormGroup;
 
   idFirabaseActualizar: string;
   actualizar: boolean;
@@ -37,21 +37,19 @@ export class UsuariosComponent implements OnInit {
       totalItems: this.collection.data.length
     };
     //inicializando formulario para guardar los productos
-    this.ProductoForm = this.fb.group({
-      id: ['', Validators.required],
-      nombre: ['', Validators.required],
-      precio: ['', Validators.required],
-      calorias: ['', Validators.required],
+    this.UsuarioForm = this.fb.group({
+    
+    
+      registro:['', Validators.required]
 
     });
     //cargando todos los productos de firebase
-    this.firebaseServiceService.getProductos().subscribe(resp => {
+    this.firebaseServiceService. getUsuarios().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
-          id: e.payload.doc.data().id,
-          nombre: e.payload.doc.data().nombre,
-          precio: e.payload.doc.data().precio,
-          calorias: e.payload.doc.data().calorias,
+          id:e.payload.doc.data().id,
+         registro:e.payload.doc.data().lastLoginTime.toDate(),
+          email:e.payload.doc.data().email,
           idFirebase: e.payload.doc.id
         }
       })
@@ -71,19 +69,12 @@ export class UsuariosComponent implements OnInit {
     this.firebaseServiceService.deleteProductos(item.idFirebase);
   }
 
-  guardarProducto(): void {
-    this.firebaseServiceService.createProductos(this.ProductoForm.value).then(resp => {
-      this.ProductoForm.reset();
-      this.modalService.dismissAll();
-    }).catch(error => {
-      console.error(error)
-    })
-  }
+ 
 
-  actualizarProducto() {
+  actualizarUsuario() {
     if (!isNullOrUndefined(this.idFirabaseActualizar)) {
-      this.firebaseServiceService.updateProductos(this.idFirabaseActualizar, this.ProductoForm.value).then(resp => {
-        this.ProductoForm.reset();
+      this.firebaseServiceService.updateUsuario(this.idFirabaseActualizar, this.UsuarioForm.value).then(resp => {
+        this.UsuarioForm.reset();
         this.modalService.dismissAll();
       }).catch(error => {
         console.error(error);
@@ -97,11 +88,10 @@ export class UsuariosComponent implements OnInit {
   openEditar(content, item: any) {
 
     //llenar form para editar
-    this.ProductoForm.setValue({
+    this.UsuarioForm.setValue({
       id: item.id,
-      nombre: item.nombre,
-      precio: item.precio,
-      calorias: item.calorias,
+      correo: item.email,
+      
     });
     this.idFirabaseActualizar = item.idFirebase;
     this.actualizar = true;
