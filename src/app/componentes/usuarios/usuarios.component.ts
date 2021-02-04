@@ -12,6 +12,8 @@ import { isNullOrUndefined } from 'util';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
+
+
   closeResult = '';
 
   UsuarioForm: FormGroup;
@@ -21,8 +23,8 @@ export class UsuariosComponent implements OnInit {
   constructor(private modalService: NgbModal,
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService
-    ) { 
-    
+  ) {
+
   }
   config: any;
   collection = { count: 0, data: [] }
@@ -38,18 +40,23 @@ export class UsuariosComponent implements OnInit {
     };
     //inicializando formulario para guardar los productos
     this.UsuarioForm = this.fb.group({
-    
-    
-      registro:['', Validators.required]
+      id: ['', Validators.required],
+      email: ['', Validators.required],
+      dir: ['', Validators.required]
+
+
+
+
 
     });
     //cargando todos los productos de firebase
-    this.firebaseServiceService. getUsuarios().subscribe(resp => {
+    this.firebaseServiceService.getUsuarios().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
-          id:e.payload.doc.data().id,
-         registro:e.payload.doc.data().lastLoginTime.toDate(),
-          email:e.payload.doc.data().email,
+          id: e.payload.doc.data().id,
+          registro: e.payload.doc.data().lastLoginTime.toDate(),
+          email: e.payload.doc.data().email,
+          dir: e.payload.doc.data().dir,
           idFirebase: e.payload.doc.id
         }
       })
@@ -69,7 +76,7 @@ export class UsuariosComponent implements OnInit {
     this.firebaseServiceService.deleteProductos(item.idFirebase);
   }
 
- 
+
 
   actualizarUsuario() {
     if (!isNullOrUndefined(this.idFirabaseActualizar)) {
@@ -90,8 +97,9 @@ export class UsuariosComponent implements OnInit {
     //llenar form para editar
     this.UsuarioForm.setValue({
       id: item.id,
-      correo: item.email,
-      
+      email: item.email,
+      dir: item.dir
+
     });
     this.idFirabaseActualizar = item.idFirebase;
     this.actualizar = true;
@@ -120,8 +128,8 @@ export class UsuariosComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
- 
 
-  }
+
+}
 
 

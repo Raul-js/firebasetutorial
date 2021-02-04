@@ -32,7 +32,6 @@ export class AuthComponent implements OnInit {
     const emaail = currentUser.email;
     const name = currentUser.displayName;
     const UserData = {lastLoginTime: new Date()};
-   
    return firebase.firestore().doc(`users/${uid}`).set(UserData,{merge:true});
     
 

@@ -12,6 +12,7 @@ import { ProductosComponent } from './componentes/productos/productos.component'
 import { AuthComponent } from './componentes/auth/auth.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { ComprasComponent } from './componentes/compras/compras.component';
+import { CarritoComponent } from './componentes/carrito/carrito.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ComprasComponent } from './componentes/compras/compras.component';
     AuthComponent,
     UsuariosComponent,
     ComprasComponent,
+    CarritoComponent,
     
   ],
   imports: [
