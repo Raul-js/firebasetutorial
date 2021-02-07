@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { isNullOrUndefined } from 'util';
+import { Usuario } from 'src/app/models';
+
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -13,7 +16,7 @@ import { isNullOrUndefined } from 'util';
 })
 export class UsuariosComponent implements OnInit {
 
-
+  
   closeResult = '';
 
   UsuarioForm: FormGroup;
@@ -95,7 +98,7 @@ export class UsuariosComponent implements OnInit {
   openEditar(content, item: any) {
 
     //llenar form para editar
-    this.UsuarioForm.setValue({
+    this.UsuarioForm.patchValue({
       id: item.id,
       email: item.email,
       dir: item.dir

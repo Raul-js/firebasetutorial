@@ -13,15 +13,21 @@ import { Subscriber } from 'rxjs';
 export class AppComponent implements OnInit {
 
   
+ 
 
 
-
-  constructor() { }
+  constructor(public firebaseService: FirebaseServiceService) { }
 
   config: any;
   collection = { count: 0, data: [] }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    const uid = this.firebaseService.getUID;
+    console.log(uid);
+
+
+   
    
   }
 

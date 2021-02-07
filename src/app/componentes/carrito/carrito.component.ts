@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
+ 
 
   constructor() { }
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { isNullOrUndefined } from 'util';
+import {Producto} from 'src/app/models';
 
 @Component({
   selector: 'app-productos',
@@ -20,7 +21,8 @@ export class ProductosComponent implements OnInit {
   actualizar: boolean;
   constructor(private modalService: NgbModal,
     public fb: FormBuilder,
-    private firebaseServiceService: FirebaseServiceService) { }
+    private firebaseServiceService: FirebaseServiceService,
+    ) { }
 
   config: any;
   collection = { count: 0, data: [] }
@@ -40,6 +42,8 @@ export class ProductosComponent implements OnInit {
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
       calorias: ['', Validators.required],
+      fecha: ['', Validators.required]
+
 
     });
     //cargando todos los productos de firebase
@@ -50,6 +54,8 @@ export class ProductosComponent implements OnInit {
           nombre: e.payload.doc.data().nombre,
           precio: e.payload.doc.data().precio,
           calorias: e.payload.doc.data().calorias,
+          fecha: e.payload.doc.data().fecha,
+
           idFirebase: e.payload.doc.id
         }
       })
@@ -95,11 +101,13 @@ export class ProductosComponent implements OnInit {
   openEditar(content, item: any) {
 
     //llenar form para editar
-    this.ProductoForm.setValue({
+    this.ProductoForm.patchValue({
       id: item.id,
       nombre: item.nombre,
       precio: item.precio,
       calorias: item.calorias,
+      fecha:item.fecha
+      
     });
     this.idFirabaseActualizar = item.idFirebase;
     this.actualizar = true;

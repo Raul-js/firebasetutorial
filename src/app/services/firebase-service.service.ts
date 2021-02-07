@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth'
+import { Producto } from '../models'
+import { auth } from 'firebase';
 
 
 
@@ -35,11 +37,20 @@ export class FirebaseServiceService {
 
 
   }
+  async getUID() {
+    const user = await this.firebaseAuth.currentUser;
+    if (user === null) {
+      return "no hay sesion";
+    } else {
+      return user.uid;
+    }
 
+  }
   //DESLOGEARSE
   logout() {
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
+
   }
 
 
@@ -56,16 +67,16 @@ export class FirebaseServiceService {
    * crea un producto en firebase
    * @param estudiante estudiante a crear
    */
-  createProductos(Producto: any) {
+  createProductos(Producto: Producto) {
     return this.firestore.collection("Producto").add(Producto);
   }
 
   /**
-   * actualiza un estudiante existente en firebase
-   * @param id id de la coleccion en firebase
-   * @param Producto estudiante a actualizar
+   * 
+  
+   * @param Producto Producto a actualizar
    */
-  updateProductos(id: any, Producto: any) {
+  updateProductos(id: any, Producto: Producto) {
     return this.firestore.collection("Producto").doc(id).update(Producto);
   }
 
@@ -82,7 +93,7 @@ export class FirebaseServiceService {
 
 
 
-                                  //SERVICIOS DE USUARIO
+  //SERVICIOS DE USUARIO
   deleteUsuarios(id: any) {
     return this.firestore.collection("users").doc(id).delete();
   }
@@ -93,8 +104,12 @@ export class FirebaseServiceService {
   }
 
   //actualizar usuario
-  
+
   updateUsuario(id: any, Usuario: any) {
     return this.firestore.collection("users").doc(id).update(Usuario);
   }
+
+
+
+
 }
