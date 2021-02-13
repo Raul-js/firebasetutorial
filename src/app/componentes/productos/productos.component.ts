@@ -19,10 +19,16 @@ export class ProductosComponent implements OnInit {
 
   idFirabaseActualizar: string;
   actualizar: boolean;
+  isSignedIn: boolean;
   constructor(private modalService: NgbModal,
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService,
-    ) { }
+    ) {
+
+      if(localStorage.getItem('user')!=null){
+        this.isSignedIn=true
+      }
+     }
 
   config: any;
   collection = { count: 0, data: [] }

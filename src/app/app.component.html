@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Yulia's kingdom</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,22 +12,22 @@
           <a class="nav-link" *ngIf="isSignedIn" aria-current="page" href="/login">Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="/Producto">Ver Productos</a>
+          <a class="nav-link" href="/Producto">Ver Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"   href="/usuario">Editar Usuarios</a>
+          <a class="nav-link" *ngIf="isSignedIn" href="/usuario">Editar Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/compra">Compras</a>
+          <a class="nav-link" *ngIf="isSignedIn" href="/compra">Compras</a>
         </li>
-       
+
         <li class="nav-item">
-          <a class="nav-link" href="/carrito">Carrito</a>
+          <a class="nav-link" *ngIf="isSignedIn" href="/carrito">Carrito</a>
         </li>
-        
-       
+
+
       </ul>
-     
+
     </div>
   </div>
 </nav>

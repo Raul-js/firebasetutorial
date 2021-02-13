@@ -17,12 +17,18 @@ export class AppComponent implements OnInit {
   
  
 
-  constructor(public firebaseService: FirebaseServiceService) { }
+  constructor(public firebaseService: FirebaseServiceService) {
+
+
+    if(localStorage.getItem('user')!=null){
+      this.isSignedIn=true
+    }
+   }
 
   config: any;
   collection = { count: 0, data: [] }
-
-  async ngOnInit() {
+  
+   ngOnInit() {
     
   
     
