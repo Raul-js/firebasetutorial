@@ -3,19 +3,29 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Producto } from '../models'
 import { auth } from 'firebase';
-
-
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseServiceService {
-  isLoggedIn = false
+  public userData$: Observable<firebase.User>
+
+  auth: any;
+  isLoggedIn= false;
+  isAdmin=false;
   constructor(
     public firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore
-  ) { }
+  ) {
 
+
+    if(localStorage.getItem('user')!=null){
+      this.isLoggedIn=true
+    }
+    
+
+  }
 
   //AUTENTICACION
 
@@ -24,9 +34,14 @@ export class FirebaseServiceService {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
       .then(res => {
         this.isLoggedIn = true
+        console.log(this.isLoggedIn)
+        console.log("te has logeado")
         localStorage.setItem('user', JSON.stringify(res.user))
       })
+
   }
+
+
   //REGISTRARSE
   async signup(email: string, password: string) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -37,19 +52,12 @@ export class FirebaseServiceService {
 
 
   }
-  async getUID() {
-    const user = await this.firebaseAuth.currentUser;
-    if (user === null) {
-      return "no hay sesion";
-    } else {
-      return user.uid;
-    }
 
-  }
   //DESLOGEARSE
   logout() {
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
+
 
   }
 

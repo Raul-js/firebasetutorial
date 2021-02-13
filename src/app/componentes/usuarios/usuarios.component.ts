@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { isNullOrUndefined } from 'util';
 import { Usuario } from 'src/app/models';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,6 @@ export class UsuariosComponent implements OnInit {
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService
   ) {
-
   }
   config: any;
   collection = { count: 0, data: [] }
@@ -45,7 +45,8 @@ export class UsuariosComponent implements OnInit {
     this.UsuarioForm = this.fb.group({
       id: ['', Validators.required],
       email: ['', Validators.required],
-      dir: ['', Validators.required]
+      dir: ['', Validators.required],
+      role:['',Validators.required]
 
 
 
@@ -60,6 +61,7 @@ export class UsuariosComponent implements OnInit {
           registro: e.payload.doc.data().lastLoginTime.toDate(),
           email: e.payload.doc.data().email,
           dir: e.payload.doc.data().dir,
+          role:e.payload.doc.data().role,
           idFirebase: e.payload.doc.id
         }
       })
@@ -76,7 +78,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   eliminar(item: any): void {
-    this.firebaseServiceService.deleteProductos(item.idFirebase);
+    this.firebaseServiceService.deleteUsuarios(item.idFirebase);
   }
 
 
@@ -101,7 +103,8 @@ export class UsuariosComponent implements OnInit {
     this.UsuarioForm.patchValue({
       id: item.id,
       email: item.email,
-      dir: item.dir
+      dir: item.dir,
+      role:item.role
 
     });
     this.idFirabaseActualizar = item.idFirebase;

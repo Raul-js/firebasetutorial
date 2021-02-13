@@ -6,7 +6,7 @@
           <th>ID</th>
           <th>email</th>    
           <th>registro</th>
-          
+          <th>direccion</th>
           
         </tr>
       </thead>
@@ -15,10 +15,10 @@
           <td>{{item.id}}</td>
           <td>{{item.email}}</td>
           <td>{{item.registro}}</td>
-         
+          <td>{{item.direccion}}</td>
           <td>
             <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
-            
+            <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
           </td>
         </tr>
         
@@ -49,6 +49,10 @@
               <div class="form-group">
                 <label>direccion</label>
                 <input type="text" formControlName="dir" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>role</label>
+                <input type="text" formControlName="role" class="form-control">
               </div>
               
               

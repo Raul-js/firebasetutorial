@@ -16,21 +16,30 @@ export class AuthComponent implements OnInit {
 
   title = 'firebase-angular-auth';
 
-  isSignedIn = false
+  isSignedIn = true
 
   @Output() isLogout = new EventEmitter<void>()
-  constructor(public firebaseService: FirebaseServiceService) { }
+  constructor(public firebaseService: FirebaseServiceService) {
+
+    
+   }
 
   async ngOnInit() {
 
-    const uid = this.firebaseService.getUID;
-    console.log(uid);
+    
+    
+   
 
-
-    if (localStorage.getItem('user') !== null)
+    if (localStorage.getItem('user') !== null){
       this.isSignedIn = true
-    else
+     
+      
+     } else{
       this.isSignedIn = false
+      
+
+    }
+
   }
   async onSignup(email: string, password: string) {
     await this.firebaseService.signup(email, password)
@@ -53,22 +62,24 @@ export class AuthComponent implements OnInit {
 
 
       this.isSignedIn = true
+     
     const currentUser = firebase.auth().currentUser;
     const uid = currentUser.uid;
     const emaail = currentUser.email;
     const name = currentUser.displayName;
-    console.log(currentUser);
+    console.log(uid);
   }
+
   handleLogout() {
     this.isSignedIn = false
 
   }
   logout() {
-    const uid = this.firebaseService.getUID;
-    console.log(uid);
+   
+   
     this.firebaseService.logout()
     this.isLogout.emit()
-
+    console.log("deslogeado");
     
   }
 

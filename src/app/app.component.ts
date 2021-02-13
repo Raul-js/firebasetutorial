@@ -4,17 +4,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseServiceService } from './services/firebase-service.service';
 import { isNullOrUndefined } from 'util';
 import { Subscriber } from 'rxjs';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  isSignedIn: boolean;
+  
+  
   
  
-
 
   constructor(public firebaseService: FirebaseServiceService) { }
 
@@ -22,13 +23,18 @@ export class AppComponent implements OnInit {
   collection = { count: 0, data: [] }
 
   async ngOnInit() {
-
-    const uid = this.firebaseService.getUID;
-    console.log(uid);
+    
+  
+    
+   
+      
+    
+   
+  
 
 
    
-   
+  
   }
 
   private getDismissReason(reason: any): string {
