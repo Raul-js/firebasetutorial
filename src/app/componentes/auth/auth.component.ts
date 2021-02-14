@@ -56,6 +56,15 @@ export class AuthComponent implements OnInit {
 
 
   }
+
+   async onGoogle(){
+     try {
+      this.firebaseService.loginGoogle();
+     } catch (error) {
+       console.log("no va");
+     }
+     
+   }
   async onSignin(email: string, password: string) {
     await this.firebaseService.signin(email, password)
     if (this.firebaseService.isLoggedIn)

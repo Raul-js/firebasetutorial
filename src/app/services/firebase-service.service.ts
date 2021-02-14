@@ -28,7 +28,15 @@ export class FirebaseServiceService {
   }
 
   //AUTENTICACION
+    //google
 
+    async loginGoogle(){
+      try {
+        this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider());
+      } catch (error) {
+        console.log(error);
+      }
+    }
   //ENTRAR
   async signin(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)

@@ -1,6 +1,6 @@
 <div style="text-align: center;">
-  <h2>Para poder comprar, inicia sesion o registrate</h2>
-
+  <h2 *ngIf="isSignedIn">Administración de productos</h2>
+  <h2 *ngIf="!isSignedIn">Inicia sesión para poder comprar nuestros productos</h2>
 
   <p *ngIf="isSignedIn"> Para crear un nuevo producto pulsa:   
   <button type="button"  class="btn btn-success" (click)="open(content)">Crear</button>
@@ -95,31 +95,5 @@
         *ngIf="actualizar">Actualizar</button>
     </div>
   </ng-template>
-  <table class="table" id="tabla" *ngIf="oculto == true">
-    <thead>
-      <tr>
-        <th >ID</th>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Calorías</th>
-        <th >Fecha</th>
-        <th >Opciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of collection.data | paginate: config">
-        <td >{{item.id}}</td>
-        <td>{{item.nombre}}</td>
-        <td>{{item.precio}}</td>
-        <td>{{item.calorias}}</td>
-        <td>{{item.fecha}}</td>
-
-       
-      </tr>
-
-
-
-
-    </tbody>
-  </table>
+ 
 </div>

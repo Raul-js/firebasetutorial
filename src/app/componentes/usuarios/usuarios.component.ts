@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {DatePipe} from "@angular/common";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { isNullOrUndefined } from 'util';
 import { Usuario } from 'src/app/models';
@@ -28,6 +28,7 @@ export class UsuariosComponent implements OnInit {
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService
   ) {
+   
   }
   config: any;
   collection = { count: 0, data: [] }
