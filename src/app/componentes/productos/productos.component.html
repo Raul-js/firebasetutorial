@@ -16,6 +16,7 @@
         <th>Precio</th>
         <th>Calorías</th>
         <th *ngIf="isSignedIn">Fecha</th>
+        <th>Tipo</th>
         <th *ngIf="isSignedIn">Opciones</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
         <td>{{item.precio}}</td>
         <td>{{item.calorias}}</td>
         <td *ngIf="isSignedIn">{{item.fecha}}</td>
+        <td>{{item.tipo}}</td>
 
         <td>
           <button type="button" *ngIf="isSignedIn" class="btn btn-primary"
@@ -61,25 +63,29 @@
           <form [formGroup]="ProductoForm">
             <div class="form-group">
               <label>Id</label>
-              <input type="number" formControlName="id" class="form-control">
+              <input type="number" formControlName="id"  maxlength="4" class="form-control">
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" formControlName="nombre" class="form-control">
+              <input type="text" formControlName="nombre" maxlength="20" class="form-control">
             </div>
 
             <div class="form-group">
               <label>Precio</label>
-              <input type="text" formControlName="precio" class="form-control">
+              <input type="text" formControlName="precio"  maxlength="3" class="form-control">
             </div>
 
             <div class="form-group">
               <label>Calorias</label>
-              <input type="text" formControlName="calorias" class="form-control">
+              <input type="text" formControlName="calorias"  maxlength="5" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Tipo</label>
+              <input type="text" formControlName="tipo"   maxlength="7" class="form-control">
             </div>
             <div class="form-group">
               <label>Fecha de registro</label>
-              <input type="date" formControlName="fecha" class="form-control">
+              <input type="date" formControlName="fecha" maxlength="15" class="form-control">
             </div>
 
 

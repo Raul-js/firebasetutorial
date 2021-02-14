@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   
   closeResult = '';
 
@@ -38,15 +38,15 @@ export class UsuariosComponent implements OnInit {
     this.actualizar = false;
     //configuracion para la productos
     this.config = {
-      itemsPerPage: 10,
+      itemsPerPage: 3,
       currentPage: 1,
       totalItems: this.collection.data.length
     };
     //inicializando formulario para guardar los productos
     this.UsuarioForm = this.fb.group({
       id: ['', Validators.required],
-      email: ['', Validators.required],
-      dir: ['', Validators.required],
+      email: ['',Validators.email],
+      dir: ['', [Validators.required]],
       role:['',Validators.required]
 
 
@@ -54,6 +54,13 @@ export class UsuariosComponent implements OnInit {
 
 
     });
+
+    /*
+    unamePattern = "^[a-z0-9_-]{8,15}$";
+  pwdPattern = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$";
+  mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$"; 
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    */
     //cargando todos los productos de firebase
     this.firebaseServiceService.getUsuarios().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {

@@ -4,9 +4,11 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>email</th>    
-          <th>registro</th>
-          <th>direccion</th>
+          <th>Email</th>    
+          <th>Registro</th>
+          <th>Dirección</th>
+          <th>Rol</th>
+          <th>Opciones</th>
           
         </tr>
       </thead>
@@ -15,7 +17,8 @@
           <td>{{item.id}}</td>
           <td>{{item.email}}</td>
           <td>{{item.registro | date: 'MM/dd/yyyy'}}</td>
-          <td>{{item.direccion}}</td>
+          <td>{{item.dir}}</td>
+          <td>{{item.role}}</td>
           <td>
             <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
             <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
@@ -40,19 +43,19 @@
             <form [formGroup]="UsuarioForm">
               <div class="form-group">
                 <label>Id</label>
-                <input type="number" formControlName="id" class="form-control">
+                <input type="number" formControlName="id" class="form-control"  maxlength="4">
               </div>
               <div class="form-group">
                 <label>email</label>
-                <input type="text" formControlName="email" class="form-control">
+                <input type="email" formControlName="email" name="email" class="form-control" maxlength="25" ng-model="email" required>
               </div>
               <div class="form-group">
                 <label>direccion</label>
-                <input type="text" formControlName="dir" class="form-control">
+                <input type="text" formControlName="dir" class="form-control" maxlength="15"  >
               </div>
               <div class="form-group">
                 <label>role</label>
-                <input type="text" formControlName="role" class="form-control">
+                <input type="text" formControlName="role" class="form-control" maxlength="9">
               </div>
               
               

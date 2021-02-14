@@ -9,9 +9,15 @@
       <label for="pass">Contraseña</label>
       <input type="password" class="form-control" id="pass" #password />
 
-      <button class="btn btn-outline-dark" (click)="onSignin(email.value,password.value)">Entrar</button>
+      <button class="btn btn-outline-dark" (click)="onSignin(email.value,password.value)">Entrar correo electrónico</button>
+      <button  *ngIf="!isSignedIn"  class="btn btn-lg btn-google" (click)="onGoogle()"> Entrar con Google</button>
+
     </div>
   </div>
+  <hr>
+
+  
+  
   <hr>
   <div class="form-group mt-3" >
     <div *ngIf="!isSignedIn">
@@ -32,7 +38,4 @@
     <button (click)="logout()"><a href="#">SALIR</a></button>
   </div>
 
-  <div class="form-group">
-  <button class="btn btn-lg btn-google" (click)="onGoogle()">Google</button>
- </div>
 </div>

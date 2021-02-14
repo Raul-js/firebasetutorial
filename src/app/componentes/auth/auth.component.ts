@@ -54,12 +54,18 @@ export class AuthComponent implements OnInit {
     return firebase.firestore().doc(`users/${uid}`).set(UserData, { merge: true });
 
 
-
   }
 
    async onGoogle(){
      try {
       this.firebaseService.loginGoogle();
+      const currentUser = firebase.auth().currentUser;
+      const uid = currentUser.uid;
+      const emaail = currentUser.email;
+      const name = currentUser.displayName;
+      const UserData = { lastLoginTime: new Date() };
+      return firebase.firestore().doc(`users/${uid}`).set(UserData, { merge: true });
+
      } catch (error) {
        console.log("no va");
      }

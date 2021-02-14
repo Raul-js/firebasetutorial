@@ -22,11 +22,14 @@ export class ProductosComponent implements OnInit {
   idFirabaseActualizar: string;
   actualizar: boolean;
   isSignedIn: boolean;
+  borrar:boolean;
+  
   constructor(private modalService: NgbModal,
     public fb: FormBuilder,
     private firebaseServiceService: FirebaseServiceService,
+    
     ) {
-
+      
       if(localStorage.getItem('user')!=null){
         this.isSignedIn=true
       }
@@ -67,7 +70,7 @@ export class ProductosComponent implements OnInit {
     this.actualizar = false;
     //configuracion para la productos
     this.config = {
-      itemsPerPage: 10,
+      itemsPerPage: 4,
       currentPage: 1,
       totalItems: this.collection.data.length
     };
@@ -77,7 +80,9 @@ export class ProductosComponent implements OnInit {
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
       calorias: ['', Validators.required],
-      fecha: ['', Validators.required]
+      fecha: ['', Validators.required],
+      tipo: ['', Validators.required]
+
 
 
     });
@@ -90,8 +95,11 @@ export class ProductosComponent implements OnInit {
           precio: e.payload.doc.data().precio,
           calorias: e.payload.doc.data().calorias,
           fecha: e.payload.doc.data().fecha,
+          tipo: e.payload.doc.data().tipo,
 
-          idFirebase: e.payload.doc.id
+
+          idFirebase: e.payload.doc.id,
+          
         }
       })
     },
@@ -141,7 +149,8 @@ export class ProductosComponent implements OnInit {
       nombre: item.nombre,
       precio: item.precio,
       calorias: item.calorias,
-      fecha:item.fecha
+      fecha:item.fecha,
+      tipo:item.tipo
       
     });
     this.idFirabaseActualizar = item.idFirebase;

@@ -14,6 +14,7 @@ export class FirebaseServiceService {
   auth: any;
   isLoggedIn= false;
   isAdmin=false;
+  nombre:string;
   constructor(
     public firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore
@@ -24,7 +25,7 @@ export class FirebaseServiceService {
       this.isLoggedIn=true
     }
     
-
+  
   }
 
   //AUTENTICACION
@@ -32,7 +33,11 @@ export class FirebaseServiceService {
 
     async loginGoogle(){
       try {
-        this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider());
+        await this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
+        .then(res =>{
+        this.isLoggedIn = true
+        localStorage.setItem('user', JSON.stringify(res.user))
+        });
       } catch (error) {
         console.log(error);
       }
