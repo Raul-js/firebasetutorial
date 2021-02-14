@@ -1,12 +1,20 @@
 <div style="text-align: center;">
-  <h2>Vista producto, Para poder comprar, inicia sesion o registrate</h2>
-  <table class="table">
+  <h2>Para poder comprar, inicia sesion o registrate</h2>
+
+
+  <p *ngIf="isSignedIn"> Para crear un nuevo producto pulsa:   
+  <button type="button"  class="btn btn-success" (click)="open(content)">Crear</button>
+  </p>
+  <br>
+  <br>
+
+  <table class="table" >
     <thead>
       <tr>
         <th *ngIf="isSignedIn">ID</th>
         <th>Nombre</th>
         <th>Precio</th>
-        <th>Calorias</th>
+        <th>Calorías</th>
         <th *ngIf="isSignedIn">Fecha</th>
         <th *ngIf="isSignedIn">Opciones</th>
       </tr>
@@ -23,7 +31,7 @@
           <button type="button" *ngIf="isSignedIn" class="btn btn-primary"
             (click)="openEditar(content,item)">Editar</button>
           <button type="button" *ngIf="isSignedIn" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
-          <button type="button" *ngIf="isSignedIn" class="btn btn-success" (click)="open(content)">Crear</button>
+          <button type="button" *ngIf="isSignedIn" class="btn btn-info" (click)="imprimirLista()">Imprimir</button>
 
         </td>
       </tr>
@@ -33,6 +41,12 @@
 
     </tbody>
   </table>
+
+
+
+
+
+  
   <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
   <ng-template #content let-modal>
     <div class="modal-header">
@@ -81,4 +95,31 @@
         *ngIf="actualizar">Actualizar</button>
     </div>
   </ng-template>
+  <table class="table" id="tabla" *ngIf="oculto == true">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Calorías</th>
+        <th >Fecha</th>
+        <th >Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of collection.data | paginate: config">
+        <td >{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.precio}}</td>
+        <td>{{item.calorias}}</td>
+        <td>{{item.fecha}}</td>
+
+       
+      </tr>
+
+
+
+
+    </tbody>
+  </table>
 </div>
