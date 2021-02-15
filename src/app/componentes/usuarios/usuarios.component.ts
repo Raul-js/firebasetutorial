@@ -45,7 +45,7 @@ export class UsuariosComponent implements OnInit {
     //inicializando formulario para guardar los productos
     this.UsuarioForm = this.fb.group({
       id: ['', Validators.required],
-      email: ['',Validators.email],
+      email: ['',Validators.required],
       dir: ['', [Validators.required]],
       role:['',Validators.required]
 

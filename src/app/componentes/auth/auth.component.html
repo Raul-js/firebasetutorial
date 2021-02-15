@@ -21,22 +21,24 @@
       </div>
     </div>
 
-   
+
     <div class="form-group">
       <div *ngIf="!isSignedIn">
         <h2>Registrarse</h2>
         <div class="col-3 justify-content-center">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" #emailSignup />
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" #emailSignup />
         </div>
         <div class="col-3 justify-content-center mt-3">
-        <label for="pass">Contraseña</label>
-        <input type="password" class="form-control" id="pass" #passwordSignup />
+          <label for="pass">Contraseña</label>
+          <input type="password" class="form-control" id="pass" #passwordSignup />
+
         </div>
 
-
-        <button class="btn btn-outline-dark"
-          (click)="onSignup(emailSignup.value,passwordSignup.value)">Registrarse</button>
+        <div class="row justify-content-center mt-3">
+          <button class="btn btn-outline-dark"
+            (click)="onSignup(emailSignup.value,passwordSignup.value)">Registrarse</button>
+        </div>
       </div>
     </div>
 
